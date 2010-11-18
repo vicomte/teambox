@@ -56,6 +56,13 @@ module ProjectsHelper
         :class => 'add_button', :id => 'new_project_link'
     end
   end
+
+  def new_task_link
+    if true
+      link_to content_tag(:span, t('.new_task')), '#',
+        :class => 'add_button', :id => 'new_task_link'
+    end
+  end
   
   def projects_tab_list(projects)
     render 'shared/projects_dropdown', :projects => projects

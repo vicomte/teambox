@@ -185,6 +185,7 @@ ActionController::Routing::Routes.draw do |map|
   end
   
   map.resources :task_lists, :only => [ :index ], :collection => { :gantt_view => :get }
+  map.resources :tasks, :only => [ :index, :create ]
   map.resources :conversations, :only => [ :create ]
   # map.resources :pages, :only => [ :index ]
 

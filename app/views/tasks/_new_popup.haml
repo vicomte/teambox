@@ -1,0 +1,7 @@
+- @current_project = Project.first
+- @task_list = TaskList.first
+- @task = Task.new
+- form_for @task, :html => {:class => 'app_form new_task_from_overview'} do |f|
+  = render 'tasks/fields', :f => f, :project => @current_project, :task_list => @task_list, :task => @task
+  .submit
+    = f.submit t('.submit'), :'data-disable-with' => t('.sending')

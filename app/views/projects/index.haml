@@ -1,3 +1,5 @@
+= render 'tasks/new_popup'
+
 - if @sub_action == 'archived'
   = list_archived_projects(@archived_projects)
 - else
@@ -27,6 +29,7 @@
 
 - content_for :column do
   %p= new_project_link
+  %p= new_task_link
 
   - if @sub_action == 'archived'
     = list_projects(@projects)

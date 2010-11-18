@@ -335,6 +335,7 @@ en:
       projects: My Projects
       subscribe: Subscribe to the news feed
       new_project: New Project
+      new_task: New Task
       rss:
         title: Teambox projects overview
         description: Overview of all projects in Teambox
@@ -781,6 +782,10 @@ en:
     overview_box:
       title: "This task"
       status: "Status"
+    new_popup:
+      new_task: Create a new Task
+      sending: Sending...
+      submit: Create Task
   notes:
     actions:
       delete_confirm: Are you sure you want to delete this note?
