@@ -23,7 +23,7 @@
     = f.label :due_on, t('.due_on')
     = date_picker(f, :due_on)
 
-  - if @task.project.nil? and @task.task_list.nil?
+  - if @task and @task.project.nil? and @task.task_list.nil?
     .project.select
       = f.label :project_id, "Project:"
       = f.select :project_id, options_for_projects_by_organization(commentable_projects)
