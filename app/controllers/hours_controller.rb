@@ -89,20 +89,18 @@ private
   end
   
   def serialize_comments(comments)
-    csv_io = StringIO.new('', 'w')
-    CSV::Writer.generate(csv_io) do |csv|
+    CSV.generate do |csv|
       csv << ["Time", "Project", "Task", "User", "Person", "Hours", "Description"]
       comments.each do |comment|
         csv << [comment.created_at.to_s(:csv_time),
                comment.project.permalink,
-               comment.target.try(:name)||'',
+               comment.target.try(:name) || '',
                comment.user.login,
                comment.user.name,
                comment.hours,
                comment.body]
       end
     end
-    csv_io.string
   end
   
   def hours_time(prefix)
