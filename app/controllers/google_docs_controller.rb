@@ -1,4 +1,4 @@
-require 'lib/google_docs'
+require File.dirname(__FILE__) + '/../../lib/google_docs'
 
 class GoogleDocsController < ApplicationController
   before_filter :create_consumer 
