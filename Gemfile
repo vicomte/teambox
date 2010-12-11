@@ -6,7 +6,6 @@ group :rails do
   gem 'memcache-client', '>= 1.7.4', :require => nil
   gem 'tzinfo', '~> 0.3.12'
   gem 'i18n', '>= 0.1.3'
-  gem 'tmail', '~> 1.2.3'
   gem 'text-format', '>= 0.6.3', :require => 'text/format'
 end
 
