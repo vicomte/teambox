@@ -51,4 +51,5 @@ group :testing do
   gem 'cucumber-rails', '~> 0.3.0', :require => nil
   gem 'capybara', '~> 0.3.5'
   gem 'launchy', '~> 0.3.5'
+  gem 'test-unit', '~> 1.2.3'
 end
