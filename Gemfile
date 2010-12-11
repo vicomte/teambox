@@ -10,7 +10,6 @@ group :rails do
   gem 'text-format', '>= 0.6.3', :require => 'text/format'
 end
 
-gem 'SystemTimer', '~> 1.2.0', :require => 'system_timer'
 gem 'whenever', '~> 0.4.1', :require => nil
 gem 'icalendar', '~> 1.1.3'
 gem 'libxml-ruby', '1.1.3', :require => 'libxml'
@@ -30,7 +29,6 @@ group :plugins do
   gem 'sprockets-rails', '~> 0.0.1'
   gem 'thinking-sphinx', '~> 1.3.15', :require => nil
   gem 'will_paginate', '~> 2.3.14'
-  # gem 'acts_as_paranoid', '~> 0.3.1' # => too old!
   gem 'paperclip', '~> 2.3.6'
   gem 'vestal_versions', '~> 1.0.2'
   gem 'cancan', '~> 1.2.0'
@@ -39,8 +37,8 @@ end
 
 group :development do
   gem 'sqlite3-ruby', '~> 1.2.5', :require => nil
-  gem 'ruby-debug', '~> 0.10.3', :require => nil
-  gem 'mongrel', '~> 1.1.5', :require => nil
+  #gem 'ruby-debug', '~> 0.10.3', :require => nil
+  #gem 'mongrel', '~> 1.1.5', :require => nil
 end
 
 # we don't call the group :test because we don't want them auto-required
