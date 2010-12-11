@@ -45,7 +45,7 @@ group :testing do
   gem 'database_cleaner', '~> 0.5.0'
   gem 'rspec-rails', '~> 1.3.3', :require => 'spec/rails'
   gem 'rcov'
-  gem 'factory_girl', '~> 1.2.3'
+  gem 'factory_girl', '~> 1.3.2'
   gem 'pickle', '~> 0.2.1'
   gem 'cucumber-rails', '~> 0.3.0', :require => nil
   gem 'capybara', '~> 0.3.5'
