@@ -726,6 +726,7 @@ en:
         too_long: 'must be shorter than 255 characters'
     fields:
       title: New Task
+      target: Select a target for this task.
       task: "Choose an actionable task. The more specific, the better."
       name: Enter a Task title <i>eg. Upload Logo Proposal</i>
       optional: You can provide better instructions for this Task below.

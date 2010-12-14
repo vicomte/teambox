@@ -93,13 +93,6 @@ module TaskListsHelper
       :project => project,
       :task_list => task_list
   end
-  
-  def task_list_date_fields(f,project,task_list)
-    render 'task_lists/date_fields',
-      :f => f,
-      :project => project,
-      :task_list => task_list
-  end
 
   def task_list_editable?(task_list,user)
     can? :update, task_list

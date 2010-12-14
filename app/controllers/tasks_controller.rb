@@ -1,6 +1,7 @@
 class TasksController < ApplicationController
   before_filter :load_task, :except => [:new, :create]
   before_filter :load_task_list, :only => [:new, :create]
+  before_filter :load_target_project, :only => [:create]
   before_filter :set_page_title
   
   rescue_from CanCan::AccessDenied do |exception|
@@ -27,7 +28,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    authorize! :make_tasks, @current_project
+    authorize! :make_tasks, (@current_project || @target_project)
     @task = @task_list.tasks.create_by_user(current_user, params[:task])
     
     respond_to do |f|
@@ -144,12 +145,19 @@ class TasksController < ApplicationController
   end
 
   private
+    def load_target_project
+      if @current_project.nil?
+        @current_project = @task_list.project
+      end
+    end
 
     def load_task_list
       @task_list = if params[:id]
         @current_project.tasks.find(params[:id]).task_list
       elsif params[:task_list_id]
         @current_project.task_lists.find params[:task_list_id]
+      elsif params[:task] and params[:task][:task_list_id]
+        TaskList.find params[:task][:task_list_id]
       end
     end
 

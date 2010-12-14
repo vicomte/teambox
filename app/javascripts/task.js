@@ -37,16 +37,6 @@ document.on('ajax:success', 'form.edit_task', function(e, form) {
   counter.update(parseInt(counter.innerHTML) + 1)
 })
 
-document.on('click', '#new_task_link', function() {
-	$$('.new_task_from_overview').first().removeClassName('invisible').show()
-	$('new_task_link').hide()
-})
-
-document.on('click', '#cancel_task_from_overview', function() {
-	$$('.new_task_from_overview').first().hide()
-	$('new_task_link').show()
-})
-
 document.on('click', '.date_picker', function(e, element) {
   new CalendarDateSelect(element.down('input'), element.down('span'), {
     buttons: true,

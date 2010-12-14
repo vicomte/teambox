@@ -58,9 +58,11 @@ module ProjectsHelper
   end
 
   def new_task_link
-    if true
-      link_to content_tag(:span, t('.new_task')), '#',
-        :class => 'add_button', :id => 'new_task_link'
+    if current_user.projects.any?
+      content_tag :p do
+        link_to content_tag(:span, t('.new_task')), '#',
+          :class => 'add_button', :id => 'new_task_link'
+      end
     end
   end
   

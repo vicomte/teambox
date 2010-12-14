@@ -1,5 +1,15 @@
 - if f.object.new_record?
   %h3= t('.title')
+  %p= t('.target')
+  - if @task and @task.project.nil? and @task.task_list.nil?
+    .project.select
+      = f.label :project_id, "Project:"
+      = f.select :project_id, ""
+  - if @task and @task.task_list.nil?
+    .task_list.select
+      = f.label :task_list_id, "Task list:"
+      = f.select :task_list_id, ""
+
   %p= t('.task')
 
 .name.text_field
@@ -19,15 +29,6 @@
     = f.label :assigned_id, t('comments.new.assigned_to')
     = f.select :assigned_id, people_from_project_for_select(project)
 
-  .pick_date
+  .pick_date.due_date
     = f.label :due_on, t('.due_on')
     = date_picker(f, :due_on)
-
-  - if @task and @task.project.nil? and @task.task_list.nil?
-    .project.select
-      = f.label :project_id, "Project:"
-      = f.select :project_id, options_for_projects_by_organization(commentable_projects)
-
-    .task_list.select
-      = f.label :task_list_id, "Task list:"
-      = f.select :task_list_id, options_for_projects_by_organization(commentable_projects)
