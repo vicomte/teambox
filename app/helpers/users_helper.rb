@@ -168,7 +168,8 @@ module UsersHelper
         :id => current_user.id,
         :username => current_user.login, 
         :splash_screen => current_user.splash_screen,
-        :collapse_activities => !!current_user.settings["collapse_activities"]
+        :collapse_activities => !!current_user.settings["collapse_activities"],
+        :first_day_of_week => current_user.first_day_of_week
       }.to_json
     end
 
