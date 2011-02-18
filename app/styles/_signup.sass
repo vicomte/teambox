@@ -1,7 +1,6 @@
 $label_indent: 150px
 .new_users, .create_users
   form
-    width: 500px
     margin: 0px
     font-size: 12px
 
@@ -12,15 +11,16 @@ $label_indent: 150px
       margin: 10px 0
       font-size: 12px
 
-    .text_field
-      input
-        font-size: 16px
-        padding: 5px
-        border:
-          top: solid 1px rgb(196, 196, 196)
-          left: solid 1px rgb(233, 233, 233) 
-          bottom: solid 1px rgb(233, 233, 233)
-          right: solid 1px rgb(196, 196, 196)
+    input[type=text], input[type=password]
+      font-size: 16px
+      padding: 5px
+      border:
+        top: 0px
+        left: 0px
+        bottom: dashed 1px rgb(133, 133, 133)
+        right: 0px
+      &:focus
+        outline-width: 0
 
     .text_field, .select, .check_box
       margin-bottom: 10px
@@ -41,7 +41,11 @@ $label_indent: 150px
       display: inline-block
       input
         background: rgb(255, 230, 230)
-        border: 1px rgb(200, 100, 100) solid
+        border:
+          top: 0px
+          left: 0px
+          bottom: 1px rgb(200, 100, 100) solid
+          right: 0px
 
     .text_field, .select
       .field_note, .errors_for
@@ -94,3 +98,7 @@ $label_indent: 150px
       p
         color: #555
         margin-top: 10px
+
+  #joke p
+    font-size: 18px
+    margin-top: 28px

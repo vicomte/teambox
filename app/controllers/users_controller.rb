@@ -36,6 +36,7 @@ class UsersController < ApplicationController
       # Regular invitation
       else
         @user = User.new
+        @user_organization = Organization.new
         @user.email = @invitation.email if @invitation
       end
     end
@@ -76,7 +77,13 @@ class UsersController < ApplicationController
                             (session[:profile] && session[:profile][:email] == @user.email) or
                             Rails.env.development? or !Teambox.config.email_confirmation_require)
 
-    if @user && @user.save
+    @user_organization = Organization.new(params[:user_organization])
+    
+    if @user && @user.valid? and @user_organization.valid? and @user.save
+      if @user_organization.save
+        @user_organization.add_member(@user, :admin)
+      end
+      
       self.current_user = @user
 
       if applink = AppLink.find_by_id(session[:applink])
