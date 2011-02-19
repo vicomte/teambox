@@ -39,6 +39,7 @@
 //= require <navigation_ajax>
 //= require <navigation_tasks>
 //= require <organizations>
+//= require <overlays>
 //= require <pages>
 //= require <pagination>
 //= require <panes>
