@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110404233401) do
+ActiveRecord::Schema.define(:version => 20110418210553) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -44,6 +44,18 @@ ActiveRecord::Schema.define(:version => 20110404233401) do
     t.string  "country"
     t.integer "account_type", :default => 0
   end
+
+  create_table "alternatives", :force => true do |t|
+    t.integer "experiment_id"
+    t.string  "content"
+    t.string  "lookup",        :limit => 32
+    t.integer "weight",                      :default => 1
+    t.integer "participants",                :default => 0
+    t.integer "conversions",                 :default => 0
+  end
+
+  add_index "alternatives", ["experiment_id"], :name => "index_alternatives_on_experiment_id"
+  add_index "alternatives", ["lookup"], :name => "index_alternatives_on_lookup"
 
   create_table "announcements", :force => true do |t|
     t.integer "user_id"
@@ -134,6 +146,21 @@ ActiveRecord::Schema.define(:version => 20110404233401) do
   add_index "conversations", ["deleted"], :name => "index_conversations_on_deleted"
   add_index "conversations", ["project_id"], :name => "index_conversations_on_project_id"
 
+  create_table "delayed_jobs", :force => true do |t|
+    t.integer  "priority",   :default => 0
+    t.integer  "attempts",   :default => 0
+    t.text     "handler"
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
+
   create_table "dividers", :force => true do |t|
     t.integer  "page_id"
     t.integer  "project_id"
@@ -171,6 +198,35 @@ ActiveRecord::Schema.define(:version => 20110404233401) do
     t.text     "mail"
     t.datetime "created_on"
   end
+
+  create_table "experiments", :force => true do |t|
+    t.string   "test_name"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "experiments", ["test_name"], :name => "index_experiments_on_test_name"
+
+  create_table "friends", :force => true do |t|
+    t.integer  "inviter_id"
+    t.integer  "user_id"
+    t.string   "name"
+    t.string   "email"
+    t.string   "provider_name"
+    t.string   "provider_id"
+    t.string   "provider_nickname"
+    t.string   "provider_avatar_url"
+    t.string   "provider_permalink"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "locale"
+    t.text     "raw"
+  end
+
+  add_index "friends", ["inviter_id", "provider_name", "provider_id"], :name => "friends_uniqueness_index", :unique => true
+  add_index "friends", ["inviter_id"], :name => "index_friends_on_inviter_id"
+  add_index "friends", ["user_id"], :name => "index_friends_on_user_id"
 
   create_table "google_docs", :force => true do |t|
     t.integer  "project_id"
@@ -396,6 +452,12 @@ ActiveRecord::Schema.define(:version => 20110404233401) do
     t.integer "account_type",         :default => 0
   end
 
+  create_table "spreedly_transaction_checks", :force => true do |t|
+    t.integer  "last_transaction_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "task_list_templates", :force => true do |t|
     t.string   "name"
     t.integer  "organization_id"
@@ -468,6 +530,34 @@ ActiveRecord::Schema.define(:version => 20110404233401) do
   end
 
   add_index "teambox_datas", ["deleted"], :name => "index_teambox_datas_on_deleted"
+
+  create_table "tolk_locales", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tolk_locales", ["name"], :name => "index_tolk_locales_on_name", :unique => true
+
+  create_table "tolk_phrases", :force => true do |t|
+    t.string   "key"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tolk_phrases", ["key"], :name => "index_tolk_phrases_on_key", :unique => true
+
+  create_table "tolk_translations", :force => true do |t|
+    t.integer  "phrase_id"
+    t.integer  "locale_id"
+    t.text     "text"
+    t.text     "previous_text"
+    t.boolean  "primary_updated", :default => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tolk_translations", ["phrase_id", "locale_id"], :name => "index_tolk_translations_on_phrase_id_and_locale_id", :unique => true
 
   create_table "uploads", :force => true do |t|
     t.integer  "user_id"
