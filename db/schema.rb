@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110602230212) do
+ActiveRecord::Schema.define(:version => 20110618072022) do
 
   create_table "activities", :force => true do |t|
     t.integer  "user_id"
@@ -175,6 +175,15 @@ ActiveRecord::Schema.define(:version => 20110602230212) do
     t.integer  "last_send_attempt", :default => 0
     t.text     "mail"
     t.datetime "created_on"
+  end
+
+  create_table "folders", :force => true do |t|
+    t.string   "name"
+    t.integer  "project_id"
+    t.integer  "parent_folder_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "deleted",          :default => false, :null => false
   end
 
   create_table "google_docs", :force => true do |t|
@@ -493,6 +502,7 @@ ActiveRecord::Schema.define(:version => 20110602230212) do
     t.datetime "updated_at"
     t.boolean  "deleted",            :default => false, :null => false
     t.boolean  "is_private",         :default => false, :null => false
+    t.integer  "parent_folder_id"
   end
 
   add_index "uploads", ["comment_id"], :name => "index_uploads_on_comment_id"
