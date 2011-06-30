@@ -47,7 +47,17 @@ module Emailer::Incoming
       end
     end
   end
-  
+
+  def self.fetch_pop3s(settings)
+    Net::POP3.enable_ssl()
+    self.fetch_pop(settings)
+  end
+
+  class << self
+    alias_method :fetch_pops :fetch_pop3s
+    alias_method :fetch_pop3 :fetch_pop3
+  end  
+
   def self.fetch_imap(settings)
     imap = Net::IMAP.new(settings[:address], settings[:port], true)
     imap.login(settings[:user_name], settings[:password])
